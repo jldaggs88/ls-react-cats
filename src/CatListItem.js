@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const CatListItem = ({ cat, handleClick }) => {
 
   return (
-    <div className="cat-item" onClick={ () => {handleClick(cat)} }>
-      <div>{console.log(cat)}</div>
+    <div className="cat-item" onClick={ () => handleClick(cat) }>
       <img src={cat.thumbnail} alt="" />
       <div>{cat.name}</div>
-      <div>{cat.birthdate}</div>
+      <div>{cat.birthDate}</div>
     </div>
   )
 }

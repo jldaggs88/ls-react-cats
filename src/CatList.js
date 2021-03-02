@@ -4,9 +4,9 @@ import CatListItem from './CatListItem';
 const CatList = ({ allCats, handleClick }) => {
 
   return (
-      <div className="cat-list">
-        {allCats.map((cat, i) => <CatListItem cat={cat} index={cat.id} handleClick={handleClick} /> )}
-      </div>
+    <div className="cat-list">
+      {allCats.map((cat, i) => <CatListItem key={cat.id} cat={cat} handleClick={handleClick} /> )}
+    </div>
   )
 }
 
