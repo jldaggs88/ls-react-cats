@@ -8,10 +8,10 @@ const DeleteModal = ({ cat, showModal, setShowModal, deleteCat }) => {
         <Modal.Header closeButton>
           <Modal.Title>Delete Cat </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Hey! Just confirming you're sure you want to delete this cat.</Modal.Body>
+        <Modal.Body>Hey! Just confirming you're sure you want to delete {cat.name}.</Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => deleteCat(cat.id)}>
-            Delete 
+            Confirm 
           </Button>
           <Button variant="secondary" onClick={() => setShowModal(!showModal)}>
             Cancel
