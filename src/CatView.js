@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CatView = ({ cat }) => {
+const CatView = ({ cat, deleteCat, setShowEdit, showEdit }) => {
 
   return (
     <div key={cat.id} className="cat-view">
@@ -13,8 +13,8 @@ const CatView = ({ cat }) => {
         <div>Number of views: {cat.viewsCount} times</div>
       </div>
       <div>
-        <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={ () => setShowEdit(!showEdit)}>Edit</button>
+        <button onClick={() => deleteCat(cat.id)}>Delete</button>
       </div>
     </div>
   )
