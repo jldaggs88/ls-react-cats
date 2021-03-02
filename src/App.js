@@ -18,6 +18,9 @@ const App = () => {
     viewsCount: catData[0].viewsCount
   });
   const [showEdit, setShowEdit] = useState(false);
+  const [showModal, setShowModal] = useState(false); //for deletecat
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   const handleClick = (record) => {
     setCat(record, record.viewsCount = record.viewsCount + 1);
@@ -29,24 +32,25 @@ const App = () => {
       return index !== i;
     });
     setCats(allCats);
+    setShowModal(!showModal)
 };
   
   const handleSearch = () => {
 
   };
 
-  const formSubmit = () => {
-    // const { cat, rememberMe } = cats;
-    // localStorage.setItem('cat', rememberMe);
-    // localStorage.setItem('user', rememberMe ? user : '');
-  }
+  // const formSubmit = () => {
+  //   // const { cat, rememberMe } = cats;
+  //   // localStorage.setItem('cat', rememberMe);
+  //   // localStorage.setItem('user', rememberMe ? user : '');
+  // }
   
 
   return (
     <div className="container">
       <h1>Cats</h1>
       <CatList allCats={cats} handleClick={handleClick} cat={cat}/>
-      <CatView cat={cat} deleteCat={deleteCat} showEdit={showEdit} setShowEdit={setShowEdit} />
+      <CatView cat={cat} deleteCat={deleteCat} handleShow={handleShow} showModal={showModal} setShowModal={setShowModal} handleClose={handleClose}/>
       <Search handleSearch={handleSearch} />
       {showEdit ? <EditCat /> : null} 
     </div>

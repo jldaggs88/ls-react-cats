@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DeleteModal from './DeleteModal'
 
-const CatView = ({ cat, deleteCat, setShowEdit, showEdit }) => {
+const CatView = ({ cat, deleteCat, setShowEdit, showEdit, showModal, setShowModal }) => {
 
   return (
     <div key={cat.id} className="cat-view">
@@ -14,8 +15,12 @@ const CatView = ({ cat, deleteCat, setShowEdit, showEdit }) => {
       </div>
       <div>
         <button onClick={ () => setShowEdit(!showEdit)}>Edit</button>
-        <button onClick={() => deleteCat(cat.id)}>Delete</button>
+        <button onClick={ () =>{
+          setShowModal(!showModal);
+          // deleteCat(cat.id)
+        }}>Delete</button>
       </div>
+      {showModal ? <DeleteModal showModal={showModal} setShowModal={setShowModal} deleteCat={deleteCat} cat={cat}/> : null}
     </div>
   )
 }
