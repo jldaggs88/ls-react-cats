@@ -8,7 +8,6 @@ import Search from './Search';
 const App = () => {
 
   const [cats, setCats] = useState(catData); //insert dummydata using localstorage
-  // const [count, setCount] = useState(0);  
   const [cat, setCat] = useState({
     id: catData[0].id,
     thumbnail: catData[0].thumbnail,
@@ -20,10 +19,6 @@ const App = () => {
 
   const handleClick = (record) => {
     setCat(record, record.viewsCount = record.viewsCount + 1);
-
-
-    // setCount(count + 1);
-    // cat.viewsCount = count;
   };
   
   const handleSearch = () => {
