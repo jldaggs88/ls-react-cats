@@ -6,12 +6,12 @@ const DeleteModal = ({ cat, showModal, setShowModal, deleteCat }) => {
   return (
     <Modal show={showModal} onHide={() => setShowModal(!showModal)}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Cat</Modal.Title>
+          <Modal.Title>Delete Cat </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>Hey! Just confirming you're sure you want to delete this cat.</Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => deleteCat(cat.id)}>
-            Save 
+            Delete 
           </Button>
           <Button variant="secondary" onClick={() => setShowModal(!showModal)}>
             Cancel
