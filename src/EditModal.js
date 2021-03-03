@@ -60,11 +60,12 @@ const EditModal = ({ cat, setShowEdit, showEdit, editCat, allCats }) => {
                   </Form.Control>
                 </Col>
               </Form.Group>
+              
             </Form>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => editCat(cat.id)}>
+          <Button variant="primary" onClick={() => editCat(allCats.indexOf(cat))}>
             Save 
           </Button>
           <Button variant="secondary" onClick={() => setShowEdit(!showEdit)}>

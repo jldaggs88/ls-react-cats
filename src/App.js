@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { catData } from "./catData";
 import CatList from './CatList';
 import CatView from './CatView';
-import Search from './Search';
 
 const App = () => {
 
-  const [cats, setCats] = useState(catData); //insert dummydata using localstorage
+  const initialData = () => JSON.parse(window.localStorage.getItem('catData').split(','));
+  initialData()
+
+  const [cats, setCats] = useState(initialData);
   const [cat, setCat] = useState({
     id: catData[0].id,
     thumbnail: catData[0].thumbnail,
@@ -19,48 +21,53 @@ const App = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+
+  useEffect(() => {
+    window.localStorage.setItem('catData', JSON.stringify(catData));
+    initialData()
+    
+  }, [])
+
   const handleClick = (record) => {
     setCat(record, record.viewsCount = record.viewsCount + 1);
   };
 
-  const editCat = () => {
-    console.log('changed a bunch of shit');
-    setShowEdit(!showEdit);
+  const editCat = (i, thumbnail, name, birthDate, owner) => {
+    let newCats = cats;
+    newCats[i].thumbnail = thumbnail;
+    newCats[i].name = name;
+    newCats[i].birthDate = birthDate;
+    newCats[i].ownerName = owner;
     
+    setCats(newCats);
+    setShowEdit(!showEdit);
   }
   
   const deleteCat = (i) => {
     let allCats = cats.filter((cat, index) => {
+      console.log(cat, i, index)
       return index !== i;
     });
     setCats(allCats);
     setShowModal(!showModal)
-};
-  
-  const handleSearch = () => {
-
   };
-
-  // const formSubmit = () => {
-  //   // const { cat, rememberMe } = cats;
-  //   // localStorage.setItem('cat', rememberMe);
-  //   // localStorage.setItem('user', rememberMe ? user : '');
-  // }
-  
 
   return (
     <div className="container">
-      <h1 class="text-center">Cats</h1>
-      <div class="row">
-        <div class="col-md-4">
+      <h1 className="text-center">Cats</h1>
+      <div className="row">
+        <div className="col-md-4">
           <div>
-            <Search handleSearch={handleSearch} />
             <CatList allCats={cats} handleClick={handleClick} />
           </div>
         </div>
-        <div class="col-md-8">
-          <div class="jumbotron">
-            <CatView cat={cat} deleteCat={deleteCat} editCat={editCat} showModal={showModal} setShowModal={setShowModal} showEdit={showEdit} setShowEdit={setShowEdit} allCats={cats}/>
+        <div className="col-md-8">
+          <div className="jumbotron">
+            {
+              !(cats.length > 0) ? 
+                <div>I'm sorry there are no more cats.</div> :
+                <CatView cat={cat} deleteCat={deleteCat} editCat={editCat} showModal={showModal} setShowModal={setShowModal} showEdit={showEdit} setShowEdit={setShowEdit} allCats={cats}/>
+            }
           </div>
         </div>
       </div>
