@@ -3,7 +3,7 @@ import DeleteModal from './DeleteModal'
 import EditModal from './EditModal';
 import { months } from './months';
 
-const CatView = ({ cat, deleteCat, editCat, setShowEdit, showEdit, showModal, setShowModal, allCats }) => {
+const CatView = ({ cat, setCat, deleteCat, editCat, setShowEdit, showEdit, showModal, setShowModal, allCats }) => {
   return (
     <div className="thumbnail">
       <img src={cat.thumbnail} alt="" width="350px" height="325px" />
@@ -27,7 +27,7 @@ const CatView = ({ cat, deleteCat, editCat, setShowEdit, showEdit, showModal, se
         </div>
       </div>
       {showModal ? <DeleteModal showModal={showModal} setShowModal={setShowModal} deleteCat={deleteCat} cat={cat} allCats={allCats}/> : null}
-      {showEdit ? <EditModal showEdit={showEdit} setShowEdit={setShowEdit} editCat={editCat} cat={cat} allCats={allCats} /> : null}
+      {showEdit ? <EditModal showEdit={showEdit} setShowEdit={setShowEdit} editCat={editCat} cat={cat} allCats={allCats} setCat={setCat} months={months} /> : null}
     
       </div>
     </div>

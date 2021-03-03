@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 
-const EditModal = ({ cat, setShowEdit, showEdit, editCat, allCats }) => {
+const EditModal = ({ cat, setShowEdit, showEdit, allCats, editCat, months }) => {
+
+  const [thumbnail, setThumbnail] = useState("");
+  const [name, setName] = useState("");
+  const [birthDate, setBirthDate] = useState({});
+  const [ownerName, setOwnerName] = useState("");
+
 
   return (
     <Modal show={showEdit} onHide={() => setShowEdit(!showEdit)}>
@@ -16,7 +22,7 @@ const EditModal = ({ cat, setShowEdit, showEdit, editCat, allCats }) => {
                   Thumbnail URL
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control type="thumbnail-url" />
+                  <Form.Control type="url" onChange={(event) => setThumbnail(event.target.value)}/>
                 </Col>
               </Form.Group>
               <Form.Group as={Row} >
@@ -24,7 +30,7 @@ const EditModal = ({ cat, setShowEdit, showEdit, editCat, allCats }) => {
                   Name
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control type="name" />
+                  <Form.Control type="name" onChange={(event) => setName(event.target.value)} />
                 </Col>
               </Form.Group>
               <Form.Group as={Row} >
@@ -32,10 +38,10 @@ const EditModal = ({ cat, setShowEdit, showEdit, editCat, allCats }) => {
                   Birth date
                 </Form.Label>
                 <Col sm={4}>
-                  <Form.Control type="birth-date" placeholder="YYYY-MM-DD" />
+                  <Form.Control type="birth-date" placeholder="YYYY-MM-DD" onChange={(event) => setBirthDate(new Date(event.target.value).getDate() + " " + months[new Date(event.target.value).getMonth()] + " " + new Date(event.target.value).getFullYear()) }/>
                 </Col>
                 <Col sm={2}>
-                  <Button type="button" class="btn btn-outline-dark">icon</Button>
+                  <Button type="button" className="btn btn-outline-dark">icon</Button>
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>
@@ -47,6 +53,10 @@ const EditModal = ({ cat, setShowEdit, showEdit, editCat, allCats }) => {
                     as="select"
                     className="my-1 mr-sm-2"
                     id="inlineFormCustomSelectOwner"
+                    onChange={(event) => {
+                      setOwnerName(event.target.value)                    
+                    }}
+                    
                     custom
                   >
                     <option>Select...</option>
@@ -65,7 +75,7 @@ const EditModal = ({ cat, setShowEdit, showEdit, editCat, allCats }) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => editCat(allCats.indexOf(cat))}>
+          <Button variant="primary" onClick={() => editCat(cat.id, thumbnail, name, birthDate, ownerName) }>
             Save 
           </Button>
           <Button variant="secondary" onClick={() => setShowEdit(!showEdit)}>

@@ -32,14 +32,17 @@ const App = () => {
     setCat(record, record.viewsCount = record.viewsCount + 1);
   };
 
-  const editCat = (i, thumbnail, name, birthDate, owner) => {
+  const editCat = (id, thumbnail, name, birthDate, ownerName) => {
+    console.log()
+    
     let newCats = cats;
-    newCats[i].thumbnail = thumbnail;
-    newCats[i].name = name;
-    newCats[i].birthDate = birthDate;
-    newCats[i].ownerName = owner;
+    newCats[id][thumbnail] = thumbnail;
+    newCats[id].name = name;
+    newCats[id][birthDate] = birthDate;
+    newCats[id].ownerName = ownerName;
     
     setCats(newCats);
+    setCat(cat)
     setShowEdit(!showEdit);
   }
   
@@ -66,7 +69,7 @@ const App = () => {
             {
               !(cats.length > 0) ? 
                 <div>I'm sorry there are no more cats.</div> :
-                <CatView cat={cat} deleteCat={deleteCat} editCat={editCat} showModal={showModal} setShowModal={setShowModal} showEdit={showEdit} setShowEdit={setShowEdit} allCats={cats}/>
+                <CatView cat={cat} setCat={setCat} deleteCat={deleteCat} editCat={editCat} showModal={showModal} setShowModal={setShowModal} showEdit={showEdit} setShowEdit={setShowEdit} allCats={cats}/>
             }
           </div>
         </div>
