@@ -37,11 +37,8 @@ const EditModal = ({ cat, setShowEdit, showEdit, allCats, editCat, months }) => 
                 <Form.Label column sm={4}>
                   Birth date
                 </Form.Label>
-                <Col sm={4}>
+                <Col sm={6}>
                   <Form.Control type="birth-date" placeholder="YYYY-MM-DD" onChange={(event) => setBirthDate(new Date(event.target.value).getDate() + " " + months[new Date(event.target.value).getMonth()] + " " + new Date(event.target.value).getFullYear()) }/>
-                </Col>
-                <Col sm={2}>
-                  <Button type="button" className="btn btn-outline-dark">icon</Button>
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>

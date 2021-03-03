@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { catData } from "./catData";
 import CatList from './CatList';
 import CatView from './CatView';
+// import Search from './Search';
 
 const App = () => {
+
 
   const initialData = () => JSON.parse(window.localStorage.getItem('catData').split(','));
   initialData()
@@ -24,8 +26,8 @@ const App = () => {
 
   useEffect(() => {
     window.localStorage.setItem('catData', JSON.stringify(catData));
-    initialData()
-    
+    initialData();
+        
   }, [])
 
   const handleClick = (record) => {
@@ -55,12 +57,23 @@ const App = () => {
     setShowModal(!showModal)
   };
 
+  // const searchCats = (string) => {
+  //   console.log(string)
+  //   const searchedCat = cats.filter((cat, i) => {
+  //     return cat.name === string;
+  //   });
+
+  //   setCat(searchedCat);
+  //   setCats(cats);
+  // }
+
   return (
     <div className="container">
       <h1 className="text-center">Cats</h1>
       <div className="row">
         <div className="col-md-4">
           <div>
+            {/* <Search searchCats={searchCats} /> */}
             <CatList allCats={cats} handleClick={handleClick} />
           </div>
         </div>
