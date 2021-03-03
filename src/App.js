@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { catData } from "./catData";
 import CatList from './CatList';
 import CatView from './CatView';
-import EditCat from './EditCat';
 import Search from './Search';
 
 const App = () => {
@@ -18,14 +17,17 @@ const App = () => {
     viewsCount: catData[0].viewsCount
   });
   const [showEdit, setShowEdit] = useState(false);
-  const [showModal, setShowModal] = useState(false); //for deletecat
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
+  const [showModal, setShowModal] = useState(false);
 
   const handleClick = (record) => {
     setCat(record, record.viewsCount = record.viewsCount + 1);
   };
 
+  const editCat = () => {
+    console.log('changed a bunch of shit');
+    setShowEdit(!showEdit);
+    
+  }
   
   const deleteCat = (i) => {
     let allCats = cats.filter((cat, index) => {
@@ -49,10 +51,9 @@ const App = () => {
   return (
     <div className="container">
       <h1>Cats</h1>
-      <CatList allCats={cats} handleClick={handleClick} cat={cat}/>
-      <CatView cat={cat} deleteCat={deleteCat} handleShow={handleShow} showModal={showModal} setShowModal={setShowModal} handleClose={handleClose}/>
+      <CatList allCats={cats} handleClick={handleClick} />
+      <CatView cat={cat} deleteCat={deleteCat} editCat={editCat} showModal={showModal} setShowModal={setShowModal} showEdit={showEdit} setShowEdit={setShowEdit} allCats={cats}/>
       <Search handleSearch={handleSearch} />
-      {showEdit ? <EditCat /> : null} 
     </div>
   )
 }
