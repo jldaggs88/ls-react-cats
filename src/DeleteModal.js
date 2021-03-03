@@ -6,7 +6,7 @@ const DeleteModal = ({ cat, showModal, setShowModal, deleteCat }) => {
   return (
     <Modal show={showModal} onHide={() => setShowModal(!showModal)}>
         <Modal.Header closeButton>
-          <Modal.Title>Delete Cat </Modal.Title>
+          <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>Hey! Just confirming you're sure you want to delete {cat.name}.</Modal.Body>
         <Modal.Footer>

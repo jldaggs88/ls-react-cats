@@ -50,10 +50,20 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Cats</h1>
-      <CatList allCats={cats} handleClick={handleClick} />
-      <CatView cat={cat} deleteCat={deleteCat} editCat={editCat} showModal={showModal} setShowModal={setShowModal} showEdit={showEdit} setShowEdit={setShowEdit} allCats={cats}/>
-      <Search handleSearch={handleSearch} />
+      <h1 class="text-center">Cats</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <Search handleSearch={handleSearch} />
+            <CatList allCats={cats} handleClick={handleClick} />
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="jumbotron">
+            <CatView cat={cat} deleteCat={deleteCat} editCat={editCat} showModal={showModal} setShowModal={setShowModal} showEdit={showEdit} setShowEdit={setShowEdit} allCats={cats}/>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

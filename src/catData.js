@@ -30,7 +30,7 @@ export const catData = [
   },{
     id: 5,
     thumbnail: "https://www.thepaws.net/wp-content/uploads/2019/04/funny-cats.jpg",
-    name: "Mr. & Mrs. Poppers",
+    name: "Mr.& Mrs. Poppers",
     birthDate: "2012-06-11",
     ownerName: "Kate Debarros",
     viewsCount: 0 
